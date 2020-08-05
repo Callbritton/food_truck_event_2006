@@ -22,14 +22,28 @@ class Event
   end
 
   def total_inventory
-    hash = Hash.new { |hash,key| hash[key] = { quantity: 0, food_trucks: [] }}
+    total = Hash.new { |hash,key| hash[key] = { quantity: 0, food_trucks: [] }}
     @food_trucks.each do |food_truck|
       food_truck.inventory.each do |item, amount|
-        hash[item][:quantity] += amount
-        hash[item][:food_trucks] << food_truck
+        total[item][:quantity] += amount
+        total[item][:food_trucks] << food_truck
         end
       end
-    hash
+    total
+  end
+
+  def items_array
+    list = []
+    total_inventory.each do |item,info|
+      list << item
+    end
+    list
+  end
+
+  def overstocked_items
+    items_array.find_all do |item|
+      total_inventory[item][:quantity] > 50 && food_trucks_that_sell(item).count > 1
+    end
   end
 
 end
