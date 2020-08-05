@@ -143,7 +143,7 @@ class ClassTest < Minitest::Test
       food_trucks: [food_truck2, food_truck3]
     },
   }
-    assert_equal expected, event.total_inventory 
+    assert_equal expected, event.total_inventory
   end
 
 end
