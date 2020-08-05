@@ -4,7 +4,11 @@ class FoodTruck
 
   def initialize(name)
     @name = name
-    @inventory = {}
+    @inventory = Hash.new { |hash, key| hash[key] = 0}
+  end
+
+  def stock(item, amount)
+    @inventory[item] += amount
   end
 
 end
