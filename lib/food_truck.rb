@@ -11,4 +11,8 @@ class FoodTruck
     @inventory[item] += amount
   end
 
+  def check_stock(item)
+    @inventory[item]
+  end
+
 end
