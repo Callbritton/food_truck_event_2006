@@ -46,4 +46,8 @@ class Event
     end
   end
 
+  def sorted_item_list
+     items_array.map(&:name).sort
+  end
+
 end
